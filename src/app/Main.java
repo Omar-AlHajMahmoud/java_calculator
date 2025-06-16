@@ -1,3 +1,9 @@
+package app;
+
+import engine.CalculatorEngine;
+import operations.binaryOperations.*;
+import operations.unaryOperations.SquareRoot;
+
 import java.util.Scanner;
 
 /**

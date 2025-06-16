@@ -1,3 +1,7 @@
+package operations.binaryOperations;
+
+import operations.BinaryOperation;
+
 /**
  * @Author Omar Mahmoud
  */

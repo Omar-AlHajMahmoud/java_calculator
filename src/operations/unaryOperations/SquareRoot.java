@@ -1,3 +1,7 @@
+package operations.unaryOperations;
+
+import operations.UnaryOperation;
+
 /**
  * @Author Omar Mahmoud
  */

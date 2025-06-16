@@ -1,7 +1,11 @@
+package operations.binaryOperations;
+
+import operations.BinaryOperation;
+
 /**
  * @Author Omar Mahmoud
  */
-public class Multiplication implements BinaryOperation {
+public class Power implements BinaryOperation {
     /**
      *
      * @param number_1
@@ -9,6 +13,6 @@ public class Multiplication implements BinaryOperation {
      * @return
      */
     public double calculate(double number_1, double number_2) {
-        return number_1 * number_2;
+        return Math.pow(number_1, number_2);
     }
 }
