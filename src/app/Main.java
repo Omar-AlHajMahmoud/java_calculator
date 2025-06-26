@@ -64,7 +64,7 @@ public class Main {
             if (input.equals("SINGLE")) {
                 System.out.println("Enter the number: ");
                 double number = scanner.nextInt();
-                System.out.println("Enter the operator: ");
+                System.out.println("Enter the operator (<): ");
                 char operator = scanner.next().charAt(0);
                 scanner.nextLine();
 
@@ -80,7 +80,7 @@ public class Main {
             double number_1 = scanner.nextInt();
             System.out.println("Enter the second number: ");
             double number_2 = scanner.nextInt();
-            System.out.println("Enter the operator: ");
+            System.out.println("Enter the operator (+, -, *, /, %, ^): ");
             char double_operator = scanner.next().charAt(0);
             scanner.nextLine();
 
