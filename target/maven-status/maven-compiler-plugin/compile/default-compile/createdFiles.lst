@@ -1,0 +1,12 @@
+operations\BinaryOperation.class
+gui\Home.class
+operations\binaryOperations\Subtraction.class
+operations\binaryOperations\Addition.class
+app\Main.class
+engine\CalculatorEngine.class
+operations\binaryOperations\Division.class
+operations\unaryOperations\SquareRoot.class
+operations\binaryOperations\Modulus.class
+operations\UnaryOperation.class
+operations\binaryOperations\Multiplication.class
+operations\binaryOperations\Power.class
