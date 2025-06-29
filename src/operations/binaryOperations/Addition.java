@@ -1,11 +1,11 @@
 package operations.binaryOperations;
 
-import operations.BinaryOperation;
+import operations.Operation;
 
 /**
  * @Author Omar Mahmoud
  */
-public class Addition implements BinaryOperation {
+public class Addition implements Operation {
     /**
      *
      * @param number_1

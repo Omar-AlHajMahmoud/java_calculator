@@ -1,11 +1,11 @@
 package operations.binaryOperations;
 
-import operations.BinaryOperation;
+import operations.Operation;
 
 /**
  * @Author Omar Mahmoud
  */
-public class Division implements BinaryOperation {
+public class Division implements Operation {
     /**
      *
      * @param number_1

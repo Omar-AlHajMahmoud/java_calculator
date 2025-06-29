@@ -2,7 +2,6 @@ package app;
 
 import engine.CalculatorEngine;
 import operations.binaryOperations.*;
-import operations.unaryOperations.SquareRoot;
 
 import java.util.Scanner;
 
@@ -16,9 +15,6 @@ public class Main {
     private static final Subtraction subtraction = new Subtraction();
     private static final Multiplication multiplication = new Multiplication();
     private static final Division division = new Division();
-    private static final Modulus modulus = new Modulus();
-    private static final Power power = new Power();
-    private static final SquareRoot squareRoot = new SquareRoot();
 
     public static void main(String[] args) {
         System.out.println("Welcome to the Calculator App!");
@@ -26,90 +22,86 @@ public class Main {
         System.out.println("This is my first project in Java, so I hope you like it!\n");
 
         Scanner scanner = new Scanner(System.in);
+        double currentNumber = 0;
+        boolean isFirstCalculation = true;
 
-        boolean exit = true;
+        displayCurrentNumber(currentNumber);
 
-        while (exit) {
+        while (true) {
 
-            System.out.println("Enter \"GO\" to start the app.");
-            System.out.println("Enter \"EXIT\" to exit the app.\n");
+            if (isFirstCalculation) {
+                System.out.println("Please enter the first number or \"EXIT\" to quit: ");
 
-            String input = scanner.nextLine();
+                String input = scanner.nextLine();
+
+                if (input.equals("EXIT")) {
+                    break;
+                } else {
+                    currentNumber = Double.parseDouble(input);
+                }
+
+                displayCurrentNumber(currentNumber);
+                isFirstCalculation = false;
+                continue;
+            }
+
+            System.out.println("Enter an operator (+, -, *, /) or \"EXIT\" to quit: ");
+            String input = scanner.nextLine().trim();
 
             if (input.equals("EXIT")) {
-                exit = false;
+                break;
+            }
+
+            if (input.length() != 1 || !isValidOperator(input.charAt(0))) {
+                System.out.println("Invalid operator, please enter a valid operator (+, -, *, /).");
                 continue;
             }
 
-            if (!input.equals("GO")) {
-                do {
-                    System.err.println("Invalid Input!");
-                    System.err.println("Enter \"GO\" to start the app. Or enter \"EXIT\" to exit the app.\n");
-                    input = scanner.nextLine();
-                    // Add exit option here
-                } while (!input.equals("GO"));
+            char operator = input.charAt(0);
+
+            System.out.println("Please enter the second number or \"EXIT\" to quit: ");
+
+            String secondNumberInput = scanner.nextLine();
+            double secondNumber;
+
+            if (secondNumberInput.equals("EXIT")) {
+                break;
+            } else {
+                secondNumber = Double.parseDouble(secondNumberInput);
             }
 
-            System.out.println("Do you want to perform a single number or two number operation?");
-            System.out.println("Enter \"SINGLE\" for a single number operation.");
-            System.out.println("Enter \"DOUBLE\" for a two number operation.\n");
-
-            input = scanner.nextLine();
-
-            while (!input.equals("SINGLE") && !input.equals("DOUBLE")) {
-                System.out.println("Invalid Input!");
-                input = scanner.nextLine();
-            }
-
-            if (input.equals("SINGLE")) {
-                System.out.println("Enter the number: ");
-                double number = scanner.nextInt();
-                System.out.println("Enter the operator: ");
-                char operator = scanner.next().charAt(0);
-                scanner.nextLine();
-
-                if (operator == '<') {
-                    System.out.println("The square root of " + number + " is " + calculatorEngine.calculate(squareRoot, number) + "\n");
-                } else {
-                    System.out.println("Invalid operator!");
-                }
-                continue;
-            }
-
-            System.out.println("Enter the first number: ");
-            double number_1 = scanner.nextInt();
-            System.out.println("Enter the second number: ");
-            double number_2 = scanner.nextInt();
-            System.out.println("Enter the operator: ");
-            char double_operator = scanner.next().charAt(0);
-            scanner.nextLine();
-
-            switch (double_operator) {
+            switch (operator) {
                 case '+':
-                    System.out.println("The sum of " + number_1 + " and " + number_2 + " is " + calculatorEngine.calculate(addition, number_1, number_2) + "\n");
+                    currentNumber = calculatorEngine.calculate(addition, currentNumber, secondNumber);
                     break;
                 case '-':
-                    System.out.println("The difference of " + number_1 + " and " + number_2 + " is " + calculatorEngine.calculate(subtraction, number_1, number_2) + "\n");
+                    currentNumber = calculatorEngine.calculate(subtraction, currentNumber, secondNumber);
                     break;
                 case '*':
-                    System.out.println("The product of " + number_1 + " and " + number_2 + " is " + calculatorEngine.calculate(multiplication, number_1, number_2) + "\n");
+                    currentNumber = calculatorEngine.calculate(multiplication, currentNumber, secondNumber);
                     break;
                 case '/':
-                    System.out.println("The quotient of " + number_1 + " and " + number_2 + " is " + calculatorEngine.calculate(division, number_1, number_2) + "\n");
-                    break;
-                case '%':
-                    System.out.println("The remainder of " + number_1 + " and " + number_2 + " is " + calculatorEngine.calculate(modulus, number_1, number_2) + "\n");
-                    break;
-                case '^':
-                    System.out.println("The power of " + number_1 + " and " + number_2 + " is " + calculatorEngine.calculate(power, number_1, number_2) + "\n");
+                    currentNumber = calculatorEngine.calculate(division, currentNumber, secondNumber);
                     break;
                 default:
                     System.out.println("Invalid operator!");
             }
+
+            displayCurrentNumber(currentNumber);
+
         }
         scanner.close();
         System.out.println("Thank you for using the Calculator App!");
         System.out.println("Goodbye!");
-        System.exit(0);
+    }
+
+    private static void displayCurrentNumber(double currentNumber) {
+        System.out.println("========================");
+        System.out.println("Current number: " + currentNumber);
+        System.out.println("========================");
+    }
+
+    private static boolean isValidOperator(char operator) {
+        return operator == '+' || operator == '-' || operator == '*' || operator == '/';
     }
 }

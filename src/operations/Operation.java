@@ -3,7 +3,7 @@ package operations;
 /**
  * @Author Omar Mahmoud
  */
-public interface BinaryOperation {
+public interface Operation {
      /**
       *
       * @param number_1
