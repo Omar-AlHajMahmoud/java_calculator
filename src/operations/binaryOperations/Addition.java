@@ -8,12 +8,12 @@ import operations.Operation;
 public class Addition implements Operation {
     /**
      *
-     * @param number_1
-     * @param number_2
+     * @param firstNumber
+     * @param secondNumber
      * @return
      */
     @Override
-    public double calculate(double number_1, double number_2) {
-        return number_1 + number_2;
+    public double calculate(double firstNumber, double secondNumber) {
+        return firstNumber + secondNumber;
     }
 }

@@ -8,11 +8,11 @@ import operations.Operation;
 public class Multiplication implements Operation {
     /**
      *
-     * @param number_1
-     * @param number_2
+     * @param firstNumber
+     * @param secondNumber
      * @return
      */
-    public double calculate(double number_1, double number_2) {
-        return number_1 * number_2;
+    public double calculate(double firstNumber, double secondNumber) {
+        return firstNumber * secondNumber;
     }
 }

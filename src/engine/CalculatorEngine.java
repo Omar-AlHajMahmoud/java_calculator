@@ -12,11 +12,11 @@ public class CalculatorEngine {
     /**
      *
      * @param operation
-     * @param number_1
-     * @param number_2
+     * @param firstNumber
+     * @param secondNumber
      * @return
      */
-    public double calculate(Operation operation, double number_1, double number_2) {
-        return operation.calculate(number_1, number_2);
+    public double calculate(Operation operation, double firstNumber, double secondNumber) {
+        return operation.calculate(firstNumber, secondNumber);
     }
 }

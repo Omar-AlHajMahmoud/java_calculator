@@ -6,9 +6,9 @@ package operations;
 public interface Operation {
      /**
       *
-      * @param number_1
-      * @param number_2
+      * @param firstNumber
+      * @param secondNumber
       * @return
       */
-     double calculate(double number_1, double number_2);
+     double calculate(double firstNumber, double secondNumber);
 }

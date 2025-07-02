@@ -70,25 +70,21 @@ public class Main {
                 secondNumber = Double.parseDouble(secondNumberInput);
             }
 
-            switch (operator) {
-                case '+':
-                    currentNumber = calculatorEngine.calculate(addition, currentNumber, secondNumber);
-                    break;
-                case '-':
-                    currentNumber = calculatorEngine.calculate(subtraction, currentNumber, secondNumber);
-                    break;
-                case '*':
-                    currentNumber = calculatorEngine.calculate(multiplication, currentNumber, secondNumber);
-                    break;
-                case '/':
-                    currentNumber = calculatorEngine.calculate(division, currentNumber, secondNumber);
-                    break;
-                default:
-                    System.out.println("Invalid operator!");
-            }
+            currentNumber = performCalculation(operator, currentNumber, secondNumber);
 
             displayCurrentNumber(currentNumber);
 
+            System.out.println("Press ENTER to continue, type \"CLEAR\" to start over, type \"EXIT\" to quit: ");
+
+            String decision = scanner.nextLine().trim();
+            if (decision.equals("CLEAR")) {
+                currentNumber = 0;
+                isFirstCalculation = true;
+                System.out.println("Calculator Cleared!");
+                displayCurrentNumber(currentNumber);
+            } else if (decision.equals("EXIT")) {
+                break;
+            }
         }
         scanner.close();
         System.out.println("Thank you for using the Calculator App!");
@@ -103,5 +99,23 @@ public class Main {
 
     private static boolean isValidOperator(char operator) {
         return operator == '+' || operator == '-' || operator == '*' || operator == '/';
+    }
+
+    private static double performCalculation(char operator, double currentNumber, double secondNumber) {
+        try {
+            return switch (operator) {
+                case '+' -> calculatorEngine.calculate(addition, currentNumber, secondNumber);
+                case '-' -> calculatorEngine.calculate(subtraction, currentNumber, secondNumber);
+                case '*' -> calculatorEngine.calculate(multiplication, currentNumber, secondNumber);
+                case '/' -> calculatorEngine.calculate(division, currentNumber, secondNumber);
+                default -> {
+                    System.out.println("Invalid operator!");
+                    yield Double.MIN_VALUE;
+                }
+            };
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return Double.MIN_VALUE;
+        }
     }
 }
