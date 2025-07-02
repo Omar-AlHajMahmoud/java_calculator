@@ -3,12 +3,10 @@ package gui;
 import engine.CalculatorEngine;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import operations.binaryOperations.Addition;
-import operations.binaryOperations.Division;
-import operations.binaryOperations.Multiplication;
-import operations.binaryOperations.Subtraction;
-
-import javafx.event.ActionEvent;
+import operations.Addition;
+import operations.Division;
+import operations.Multiplication;
+import operations.Subtraction;
 
 /**
  * @Author Omar Mahmoud

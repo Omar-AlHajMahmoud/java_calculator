@@ -1,11 +1,9 @@
-package operations.binaryOperations;
-
-import operations.Operation;
+package operations;
 
 /**
  * @Author Omar Mahmoud
  */
-public class Subtraction implements Operation {
+public class Multiplication implements Operation {
     /**
      *
      * @param firstNumber
@@ -13,6 +11,6 @@ public class Subtraction implements Operation {
      * @return
      */
     public double calculate(double firstNumber, double secondNumber) {
-        return firstNumber - secondNumber;
+        return firstNumber * secondNumber;
     }
 }

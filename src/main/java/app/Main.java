@@ -1,7 +1,10 @@
 package app;
 
 import engine.CalculatorEngine;
-import operations.binaryOperations.*;
+import operations.Addition;
+import operations.Division;
+import operations.Multiplication;
+import operations.Subtraction;
 
 import java.util.Scanner;
 
