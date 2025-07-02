@@ -1,13 +1,9 @@
-operations\BinaryOperation.class
 gui\CalculatorManager.class
+gui\Home.class
 operations\binaryOperations\Subtraction.class
 operations\binaryOperations\Addition.class
+operations\Operation.class
 app\Main.class
-operations\binaryOperations\Division.class
-operations\binaryOperations\Power.class
-gui\Home.class
 engine\CalculatorEngine.class
-operations\unaryOperations\SquareRoot.class
-operations\binaryOperations\Modulus.class
-operations\UnaryOperation.class
+operations\binaryOperations\Division.class
 operations\binaryOperations\Multiplication.class
