@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
-public class Home extends Application {
+public class GUIHome extends Application {
 
     private final CalculatorManager calculatorManager = new CalculatorManager();
 

@@ -1,4 +1,4 @@
-package app;
+package cli;
 
 import engine.CalculatorEngine;
 import operations.Addition;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * @Author Omar Mahmoud
  */
-public class Main {
+public class CLIHome {
 
     private static final CalculatorEngine calculatorEngine = new CalculatorEngine();
     private static final Addition addition = new Addition();
