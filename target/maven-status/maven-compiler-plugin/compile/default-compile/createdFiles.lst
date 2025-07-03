@@ -1,9 +1,9 @@
+operations\Addition.class
 gui\CalculatorManager.class
 gui\Home.class
-operations\binaryOperations\Subtraction.class
-operations\binaryOperations\Addition.class
+operations\Division.class
+operations\Multiplication.class
 operations\Operation.class
+operations\Subtraction.class
 app\Main.class
 engine\CalculatorEngine.class
-operations\binaryOperations\Division.class
-operations\binaryOperations\Multiplication.class

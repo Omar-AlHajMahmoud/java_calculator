@@ -2,7 +2,7 @@ package gui;
 
 import engine.CalculatorEngine;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import operations.Addition;
 import operations.Division;
 import operations.Multiplication;
@@ -23,36 +23,36 @@ public class CalculatorManager {
     private String currentOperator = "";
     private boolean waitingForOperand = false;
 
-    public void handleNumberClick (Button button, TextArea textArea) {
+    public void handleNumberClick (Button button, Label calculatorDisplay) {
         String number = button.getText();
-        appendToDisplay(number, textArea);
+        appendToDisplay(number, calculatorDisplay);
     }
 
-    private void appendToDisplay (String number, TextArea textArea) {
+    private void appendToDisplay (String number, Label calculatorDisplay) {
         if (waitingForOperand) {
-            textArea.setText(number);
+            calculatorDisplay.setText(number);
             waitingForOperand = false;
         } else {
-            String current = textArea.getText();
+            String current = calculatorDisplay.getText();
             if (current.equals("0")) {
-                textArea.setText(number);
+                calculatorDisplay.setText(number);
             } else {
-                textArea.setText(current + number);
+                calculatorDisplay.setText(current + number);
             }
         }
     }
 
-    public void handleOperatorClick (Button button, TextArea textArea) {
+    public void handleOperatorClick (Button button, Label calculatorDisplay) {
         String operator = button.getText();
-        processOperator(operator, textArea);
+        processOperator(operator, calculatorDisplay);
     }
 
-    private void processOperator (String operator, TextArea textArea) {
-        double number = Double.parseDouble(textArea.getText());
+    private void processOperator (String operator, Label calculatorDisplay) {
+        double number = Double.parseDouble(calculatorDisplay.getText());
 
         if (!currentOperator.isEmpty() && !waitingForOperand) {
             double result = performCalculation(currentNumber, number, operator);
-            textArea.setText(Double.toString(result));
+            calculatorDisplay.setText(Double.toString(result));
             currentNumber = result;
         } else {
             currentNumber = number;
@@ -72,18 +72,18 @@ public class CalculatorManager {
         };
     }
 
-    public void handleEqualsClick (TextArea textArea) {
+    public void handleEqualsClick (Label calculatorDisplay) {
         if (!currentOperator.isEmpty() && !waitingForOperand) {
-            double secondNumber = Double.parseDouble(textArea.getText());
+            double secondNumber = Double.parseDouble(calculatorDisplay.getText());
             double result = performCalculation(currentNumber, secondNumber, currentOperator);
-            textArea.setText(Double.toString(result));
+            calculatorDisplay.setText(Double.toString(result));
             currentOperator = "";
             waitingForOperand = true;
         }
     }
 
-    public void handleClearClick (TextArea textArea) {
-        textArea.setText("0");
+    public void handleClearClick (Label calculatorDisplay) {
+        calculatorDisplay.setText("0");
         currentNumber = 0;
         currentOperator = "";
         waitingForOperand = false;

@@ -3,18 +3,18 @@ package gui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 
 public class Home extends Application {
 
     private final CalculatorManager calculatorManager = new CalculatorManager();
 
-    private TextArea textArea;
+    private Label calculatorDisplay;
 
     public static void main(String[] args) {
         launch(args);
@@ -28,7 +28,7 @@ public class Home extends Application {
 
         root.getChildren().add(initializeCalculator());
 
-        Scene scene = new Scene(root, 300, 400);
+        Scene scene = new Scene(root, 300, 320);
         scene.getStylesheets().add(getClass().getResource("/gui/styles.css").toExternalForm());
 
         stage.setScene(scene);
@@ -64,12 +64,14 @@ public class Home extends Application {
         thirdRow.getChildren().addAll(one, two, three, multiply);
         fourthRow.getChildren().addAll(clear, zero, equal, divide);
 
-        textArea = new TextArea();
-        textArea.setEditable(false);
-        textArea.getStyleClass().add("text-area");
+        calculatorDisplay = new Label();
+        calculatorDisplay.getStyleClass().add("display-label");
+        calculatorDisplay.setText("0");
+        calculatorDisplay.setPrefWidth(Double.MAX_VALUE);
+        calculatorDisplay.setPrefHeight(100);
 
         VBox root = new VBox();
-        root.getChildren().addAll(textArea, firstRow, secondRow, thirdRow, fourthRow);
+        root.getChildren().addAll(calculatorDisplay, firstRow, secondRow, thirdRow, fourthRow);
 
         return root;
     }
@@ -80,7 +82,7 @@ public class Home extends Application {
         button.setPrefHeight(55);
         button.setPadding(new Insets(10));
         button.getStyleClass().add("number-button");
-        button.setOnAction(event -> {calculatorManager.handleNumberClick(button, textArea);});
+        button.setOnAction(event -> {calculatorManager.handleNumberClick(button, calculatorDisplay);});
         return button;
     }
 
@@ -90,7 +92,7 @@ public class Home extends Application {
         button.setPrefHeight(55);
         button.setPadding(new Insets(10));
         button.getStyleClass().add("operator-button");
-        button.setOnAction(event -> {calculatorManager.handleOperatorClick(button, textArea);});
+        button.setOnAction(event -> {calculatorManager.handleOperatorClick(button, calculatorDisplay);});
         return button;
     }
 
@@ -100,7 +102,7 @@ public class Home extends Application {
         button.setPrefHeight(55);
         button.setPadding(new Insets(10));
         button.getStyleClass().add("clear-button");
-        button.setOnAction(event -> {calculatorManager.handleClearClick(textArea);});
+        button.setOnAction(event -> {calculatorManager.handleClearClick(calculatorDisplay);});
         return button;
     }
 
@@ -110,7 +112,7 @@ public class Home extends Application {
         button.setPrefHeight(55);
         button.setPadding(new Insets(10));
         button.getStyleClass().add("operator-button");
-        button.setOnAction(event -> calculatorManager.handleEqualsClick(textArea));
+        button.setOnAction(event -> calculatorManager.handleEqualsClick(calculatorDisplay));
         return button;
     }
 }
