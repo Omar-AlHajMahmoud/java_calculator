@@ -4,12 +4,16 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
+/**
+ * @Author Omar Mahmoud
+ */
 public class GUIHome extends Application {
 
     private final CalculatorManager calculatorManager = new CalculatorManager();
@@ -30,6 +34,9 @@ public class GUIHome extends Application {
 
         Scene scene = new Scene(root, 300, 320);
         scene.getStylesheets().add(getClass().getResource("/gui/styles.css").toExternalForm());
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            calculatorManager.handleKeyPressed(event, calculatorDisplay);
+        });
 
         stage.setScene(scene);
         stage.setResizable(false);
@@ -83,6 +90,7 @@ public class GUIHome extends Application {
         button.setPadding(new Insets(10));
         button.getStyleClass().add("number-button");
         button.setOnAction(event -> {calculatorManager.handleNumberClick(button, calculatorDisplay);});
+        button.requestFocus();
         return button;
     }
 
@@ -93,6 +101,7 @@ public class GUIHome extends Application {
         button.setPadding(new Insets(10));
         button.getStyleClass().add("operator-button");
         button.setOnAction(event -> {calculatorManager.handleOperatorClick(button, calculatorDisplay);});
+        button.requestFocus();
         return button;
     }
 
@@ -103,6 +112,7 @@ public class GUIHome extends Application {
         button.setPadding(new Insets(10));
         button.getStyleClass().add("clear-button");
         button.setOnAction(event -> {calculatorManager.handleClearClick(calculatorDisplay);});
+        button.requestFocus();
         return button;
     }
 
@@ -113,6 +123,7 @@ public class GUIHome extends Application {
         button.setPadding(new Insets(10));
         button.getStyleClass().add("operator-button");
         button.setOnAction(event -> calculatorManager.handleEqualsClick(calculatorDisplay));
+        button.requestFocus();
         return button;
     }
 }

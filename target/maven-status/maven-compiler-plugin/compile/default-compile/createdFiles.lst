@@ -1,9 +1,9 @@
 operations\Addition.class
 gui\CalculatorManager.class
-gui\Home.class
 operations\Division.class
 operations\Multiplication.class
+cli\CLIHome.class
 operations\Operation.class
 operations\Subtraction.class
-app\Main.class
 engine\CalculatorEngine.class
+gui\GUIHome.class

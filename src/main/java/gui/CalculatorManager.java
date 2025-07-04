@@ -3,10 +3,14 @@ package gui;
 import engine.CalculatorEngine;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import operations.Addition;
 import operations.Division;
 import operations.Multiplication;
 import operations.Subtraction;
+
+import java.util.Objects;
 
 /**
  * @Author Omar Mahmoud
@@ -87,5 +91,46 @@ public class CalculatorManager {
         currentNumber = 0;
         currentOperator = "";
         waitingForOperand = false;
+    }
+
+    public void handleKeyPressed(KeyEvent keyEvent, Label calculatorDisplay) {
+        String text = keyEvent.getText();
+        KeyCode code = keyEvent.getCode();
+
+        switch (text) {
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+                appendToDisplay(text, calculatorDisplay);
+                break;
+            case "+":
+                processOperator("+", calculatorDisplay);
+                break;
+            case "-":
+                processOperator("-", calculatorDisplay);
+                break;
+            case "*":
+                processOperator("X", calculatorDisplay);
+                break;
+            case "/":
+                processOperator("/", calculatorDisplay);
+                break;
+            case "=":
+                handleEqualsClick(calculatorDisplay);
+                break;
+            default:
+                break;
+        }
+
+        if (Objects.requireNonNull(code) == KeyCode.DELETE) {
+            handleClearClick(calculatorDisplay);
+        }
     }
 }
