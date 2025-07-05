@@ -1,0 +1,100 @@
+.number-button {
+     -fx-background-color: linear-gradient(to bottom, #87ceeb, #4682b4);
+     -fx-background-radius: 8;
+     -fx-padding: 10 16 10 16;
+     -fx-font-size: 20px;
+     -fx-font-family: "Consolas", "Monaco", "Courier New", monospace;
+     -fx-font-weight: bold;
+     -fx-text-fill: white;
+     -fx-border-color: #2e4f6b;
+     -fx-border-width: 2px;
+     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.5, 2, 2);
+     -fx-cursor: hand;
+ }
+
+.number-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #98d4f0, #5a9bd6);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.4, 2, 2);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.number-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #6bb6d6, #357abd);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 2, 0.8, 1, 1);
+    -fx-translate-y: 1;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.operator-button {
+    -fx-background-color: linear-gradient(to bottom, #daa520, #b8860b);
+    -fx-background-radius: 8;
+    -fx-padding: 10 16 10 16;
+    -fx-font-size: 21px;
+    -fx-font-family: "Consolas", "Monaco", "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-border-color: #8b6914;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.5, 2, 2);
+    -fx-cursor: hand;
+}
+
+.operator-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #e6b82a, #cd950f);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.4, 2, 2);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.operator-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #b8941f, #9d7b0d);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 2, 0.8, 1, 1);
+    -fx-translate-y: 1;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.clear-button {
+    -fx-background-color: linear-gradient(to bottom, #ce1638, #850202);
+    -fx-background-radius: 8;
+    -fx-padding: 10 16 10 16;
+    -fx-font-size: 21px;
+    -fx-font-family: "Consolas", "Monaco", "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-border-color: #e5358e;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.5, 2, 2);
+    -fx-cursor: hand;
+}
+
+.clear-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff0000, #ff870e);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.4, 2, 2);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.clear-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #690307, #9a0202);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 2, 0.8, 1, 1);
+    -fx-translate-y: 1;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.display-label {
+    -fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+    -fx-padding: 20 15 20 15;
+    -fx-font-size: 28px;
+    -fx-font-family: "Consolas", "Monaco", "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center-left;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 2px;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 3, 0.5, 0, 1);
+    -fx-min-height: 60px;
+}
