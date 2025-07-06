@@ -1,24 +1,33 @@
 package cli;
 
 import engine.CalculatorEngine;
-import operations.Addition;
-import operations.Division;
-import operations.Multiplication;
-import operations.Subtraction;
 
 import java.util.Scanner;
 
 /**
+ * Command Line Interface for a basic calculator application.
+ * This class provides an interactive CLI that allows the user to run basic mathematical operations, including:
+ * addition, subtraction, multiplication, and division.
+ *
+ * <p>The calculator maintains a running total and allows users to perform sequential operations on the current result.
+ * Users can clear the calculator or exit at any time.</p>
+ *
  * @Author Omar Mahmoud
  */
 public class CLIHome {
 
+    /**
+     * The calculator engine instance that is used to run the mathematical operations.
+     * The engine handles the actual calculation logic.
+     */
     private static final CalculatorEngine calculatorEngine = new CalculatorEngine();
-    private static final Addition addition = new Addition();
-    private static final Subtraction subtraction = new Subtraction();
-    private static final Multiplication multiplication = new Multiplication();
-    private static final Division division = new Division();
 
+    /**
+     * The main entry point to the CLI application.
+     * Initializes the interface and handles the main program loop.
+     *
+     * @param args command line arguments are not used in this application
+     */
     public static void main(String[] args) {
         System.out.println("Welcome to the Calculator App!");
         System.out.println("This is a simple calculator app to perform basic mathematical operations.");
@@ -60,7 +69,7 @@ public class CLIHome {
                 continue;
             }
 
-            char operator = input.charAt(0);
+            String operator = String.valueOf(input.charAt(0));
 
             System.out.println("Please enter the second number or \"EXIT\" to quit: ");
 
@@ -94,28 +103,49 @@ public class CLIHome {
         System.out.println("Goodbye!");
     }
 
+    /**
+     * Displays the current number of the calculator in the console.
+     *
+     * @param currentNumber the current number to display.
+     */
     private static void displayCurrentNumber(double currentNumber) {
         System.out.println("========================");
         System.out.println("Current number: " + currentNumber);
         System.out.println("========================");
     }
 
+    /**
+     * Validates whether the provided character is a supported mathematical operation.
+     *
+     * <p>Supported operations:</p>
+     * <ul>
+     *     <li>'+' for addition</li>
+     *     <li>'-' for subtraction</li>
+     *     <li>'*' for multiplication</li>
+     *     <li>'/' for division</li>
+     * </ul>
+     *
+     * @param operator the character to validate as an operator.
+     * @return {@code true} if the operator is valid, {@code false} otherwise
+     */
     private static boolean isValidOperator(char operator) {
         return operator == '+' || operator == '-' || operator == '*' || operator == '/';
     }
 
-    private static double performCalculation(char operator, double currentNumber, double secondNumber) {
+    /**
+     * Performs the mathematical operation using the calculator engine.
+     *
+     * <p>If an error happens during calculation, the message is printed in the console and {@code Double.MIN_VALUE}
+     * is returned as an error indicator.</p>
+     *
+     * @param operator the mathematical operator as a string ("+", "-", "*", "/")
+     * @param currentNumber the first operand (current calculator value)
+     * @param secondNumber the second operand (user input)
+     * @return the result of the calculation, or {@code Double.MIN_VALUE} if an error occurs
+     */
+    private static double performCalculation(String operator, double currentNumber, double secondNumber) {
         try {
-            return switch (operator) {
-                case '+' -> calculatorEngine.calculate(addition, currentNumber, secondNumber);
-                case '-' -> calculatorEngine.calculate(subtraction, currentNumber, secondNumber);
-                case '*' -> calculatorEngine.calculate(multiplication, currentNumber, secondNumber);
-                case '/' -> calculatorEngine.calculate(division, currentNumber, secondNumber);
-                default -> {
-                    System.out.println("Invalid operator!");
-                    yield Double.MIN_VALUE;
-                }
-            };
+            return calculatorEngine.calculate(operator, currentNumber, secondNumber);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return Double.MIN_VALUE;

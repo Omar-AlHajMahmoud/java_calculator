@@ -12,20 +12,52 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 /**
+ * Main GUI application class for the calculator application.
+ *
+ * <p>The calculator GUI features:
+ * <ul>
+ *     <li>A digital display showing current numbers and results</li>
+ *     <li>Number buttons (0-9) for numeric input</li>
+ *     <li>Operator buttons (+, -, X, /) for mathematical operations</li>
+ *     <li>Clear button (C) for resetting the calculator</li>
+ *     <li>Equals button (=) for executing calculations</li>
+ *     <li>Keyboard support for enhanced user interaction</li>
+ *     <li>Custom CSS styling for improved visual appearance</li>
+ * </ul>
+ *
  * @Author Omar Mahmoud
+ * @see CalculatorManager
  */
 public class GUIHome extends Application {
 
+    /**
+     * The calculator manager instance responsible for handling all the calculator logic and state management.
+     */
     private final CalculatorManager calculatorManager = new CalculatorManager();
 
+    /**
+     * The main display label showing the current number, calculation reuslt, and user input.
+     */
     private Label calculatorDisplay;
 
+    /**
+     * The main entry point for the JavaFX application.
+     *
+     * @param args command line arguments passed to the application
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Initializes and starts the JavaFX application.
+     *
+     * @param stage the primary stage provided by the JavaFX runtime
+     *
+     * @see #initializeCalculator()
+     */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         stage.setTitle("Calculator");
 
         StackPane root = new StackPane();
@@ -43,6 +75,16 @@ public class GUIHome extends Application {
         stage.show();
     }
 
+    /**
+     * Initializes and constructs the complete calculator user interface.
+     *
+     * @return the main VBox container containing the complete calculator interface
+     *
+     * @see #createNumberButton(String)
+     * @see #createOperatorButton(String)
+     * @see #createClearButton()
+     * @see #createEqualButton()
+     */
     private VBox initializeCalculator() {
         Button add = createOperatorButton("+");
         Button subtract = createOperatorButton("-");
@@ -83,6 +125,12 @@ public class GUIHome extends Application {
         return root;
     }
 
+    /**
+     * Creates a number button with standardized styling and behavior.
+     *
+     * @param text the number to display on the button
+     * @return a number button ready to use
+     */
     private Button createNumberButton(String text) {
         Button button = new Button(text);
         button.setPrefWidth(80);
@@ -94,6 +142,12 @@ public class GUIHome extends Application {
         return button;
     }
 
+    /**
+     * Creates an operator button with standardized styling and behavior.
+     *
+     * @param text the operator symbol to display on the button
+     * @return an operator button ready to use
+     */
     private Button createOperatorButton(String text) {
         Button button = new Button(text);
         button.setPrefWidth(80);
@@ -105,6 +159,11 @@ public class GUIHome extends Application {
         return button;
     }
 
+    /**
+     * Creates a clear button with standardized styling and behavior.
+     *
+     * @return a clear button ready to use
+     */
     private Button createClearButton() {
         Button button = new Button("C");
         button.setPrefWidth(80);
@@ -116,6 +175,11 @@ public class GUIHome extends Application {
         return button;
     }
 
+    /**
+     * Creates an equals button with standardized styling and behavior.
+     *
+     * @return an equals button ready to use
+     */
     private Button createEqualButton() {
         Button button = new Button("=");
         button.setPrefWidth(80);

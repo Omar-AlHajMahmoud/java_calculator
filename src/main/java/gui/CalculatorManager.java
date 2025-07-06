@@ -5,33 +5,66 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import operations.Addition;
-import operations.Division;
-import operations.Multiplication;
-import operations.Subtraction;
 
 import java.util.Objects;
 
 /**
+ * Manager class to handle the calculator operations and user interactions in the GUI.
+ *
+ * <p>This calculator includes the current calculator's state, including:
+ * <ul>
+ *     <li>Current number</li>
+ *     <li>Current operator selected</li>
+ *     <li>Whether the calculator is waiting for a new operand</li>
+ * </ul>
+ *
+ *
  * @Author Omar Mahmoud
+ * @see CalculatorEngine
  */
 public class CalculatorManager {
 
+    /**
+     * The calculator engine instance that is used to run the mathematical operations.
+     * The engine handles the actual calculation logic.
+     */
     private static final CalculatorEngine calculatorEngine = new CalculatorEngine();
-    private static final Addition addition = new Addition();
-    private static final Subtraction subtraction = new Subtraction();
-    private static final Multiplication multiplication = new Multiplication();
-    private static final Division division = new Division();
 
+    /**
+     * The current number stored in the calculator's memory.
+     * This value is either the first operand in the first calculation or the running value of previous calculations.
+     */
     private double currentNumber = 0;
+
+    /**
+     * The currently selected mathematical operator.
+     */
     private String currentOperator = "";
+
+    /**
+     * Flag indication whether the calculator is waiting for a new operand input.
+     */
     private boolean waitingForOperand = false;
 
+    /**
+     * Handles number button clicks in the calculator GUI.
+     *
+     * @param button the number button that was clicked
+     * @param calculatorDisplay the label displaying the current calculator value
+     *
+     * @see #appendToDisplay(String, Label)
+     */
     public void handleNumberClick (Button button, Label calculatorDisplay) {
         String number = button.getText();
         appendToDisplay(number, calculatorDisplay);
     }
 
+    /**
+     * Updates the calculator display based on the current state.
+     *
+     * @param number the number string to append or display
+     * @param calculatorDisplay the label displaying the current calculator value
+     */
     private void appendToDisplay (String number, Label calculatorDisplay) {
         if (waitingForOperand) {
             calculatorDisplay.setText(number);
@@ -46,11 +79,27 @@ public class CalculatorManager {
         }
     }
 
+    /**
+     * Handles operator button clicks in the calculator GUI.
+     *
+     * @param button the operator button that was clicked
+     * @param calculatorDisplay the label displaying the current calculator value
+     *
+     * @see #processOperator(String, Label)
+     */
     public void handleOperatorClick (Button button, Label calculatorDisplay) {
         String operator = button.getText();
         processOperator(operator, calculatorDisplay);
     }
 
+    /**
+     * Processes a mathematical operator and updates the calculator state.
+     *
+     * @param operator the mathematical operator symbol as a string
+     * @param calculatorDisplay the label displaying the current calculator value
+     *
+     * @see #performCalculation(double, double, String)
+     */
     private void processOperator (String operator, Label calculatorDisplay) {
         double number = Double.parseDouble(calculatorDisplay.getText());
 
@@ -66,16 +115,25 @@ public class CalculatorManager {
         waitingForOperand = true;
     }
 
+    /**
+     * Performs a mathematical operation using the calculator engine.
+     *
+     * @param currentNumber the first operand in the calculation
+     * @param number the second operand in the calculation
+     * @param operator the mathematical operator to apply
+     * @return the result of the mathematical operator
+     */
     private double performCalculation (double currentNumber, double number, String operator) {
-        return switch (operator) {
-            case "+" -> calculatorEngine.calculate(addition, currentNumber, number);
-            case "-" -> calculatorEngine.calculate(subtraction, currentNumber, number);
-            case "X" -> calculatorEngine.calculate(multiplication, currentNumber, number);
-            case "/" -> calculatorEngine.calculate(division, currentNumber, number);
-            default -> number;
-        };
+        return calculatorEngine.calculate(operator, currentNumber, number);
     }
 
+    /**
+     * Handles equals button clicks to execute the calculations.
+     *
+     * @param calculatorDisplay the label displaying the current calculator value
+     *
+     * @see #performCalculation(double, double, String)
+     */
     public void handleEqualsClick (Label calculatorDisplay) {
         if (!currentOperator.isEmpty() && !waitingForOperand) {
             double secondNumber = Double.parseDouble(calculatorDisplay.getText());
@@ -86,6 +144,11 @@ public class CalculatorManager {
         }
     }
 
+    /**
+     * Handles clear button clicks to reset the calculator to its initial state.
+     *
+     * @param calculatorDisplay the label displaying the current calculator value
+     */
     public void handleClearClick (Label calculatorDisplay) {
         calculatorDisplay.setText("0");
         currentNumber = 0;
@@ -93,6 +156,20 @@ public class CalculatorManager {
         waitingForOperand = false;
     }
 
+    /**
+     * Handles keyboard input events for better user interaction.
+     *
+     * <p>Supported keyboard inputs:
+     * <ul>
+     *     <li>Numbers 0-9: equivalent to clicking number buttons</li>
+     *     <li>Operators (+, -, *, /): equivalent to clicking operator buttons</li>
+     *     <li>Equals (=): equivalent to clicking the equals button</li>
+     *     <li>Delete key: equivalent to clicking the clear button</li>
+     * </ul>
+     *
+     * @param keyEvent they keyboard event containing the pressed key information
+     * @param calculatorDisplay the label displaying the current calculator value
+     */
     public void handleKeyPressed(KeyEvent keyEvent, Label calculatorDisplay) {
         String text = keyEvent.getText();
         KeyCode code = keyEvent.getCode();
