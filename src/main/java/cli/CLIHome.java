@@ -128,7 +128,7 @@ public class CLIHome {
      * @param operator the character to validate as an operator.
      * @return {@code true} if the operator is valid, {@code false} otherwise
      */
-    private static boolean isValidOperator(char operator) {
+    public static boolean isValidOperator(char operator) {
         return operator == '+' || operator == '-' || operator == '*' || operator == '/';
     }
 
@@ -143,7 +143,7 @@ public class CLIHome {
      * @param secondNumber the second operand (user input)
      * @return the result of the calculation, or {@code Double.MIN_VALUE} if an error occurs
      */
-    private static double performCalculation(String operator, double currentNumber, double secondNumber) {
+    public static double performCalculation(String operator, double currentNumber, double secondNumber) {
         try {
             return calculatorEngine.calculate(operator, currentNumber, secondNumber);
         } catch (Exception e) {

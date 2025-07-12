@@ -210,7 +210,7 @@ public class CalculatorManager {
                 processOperator("-", calculatorDisplay);
                 break;
             case "*":
-                processOperator("X", calculatorDisplay);
+                processOperator("*", calculatorDisplay);
                 break;
             case "/":
                 processOperator("/", calculatorDisplay);

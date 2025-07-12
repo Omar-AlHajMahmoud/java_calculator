@@ -88,7 +88,7 @@ public class GUIHome extends Application {
     private VBox initializeCalculator() {
         Button add = createOperatorButton("+");
         Button subtract = createOperatorButton("-");
-        Button multiply = createOperatorButton("X");
+        Button multiply = createOperatorButton("*");
         Button divide = createOperatorButton("/");
         Button clear = createClearButton();
         Button equal = createEqualButton();
