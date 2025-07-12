@@ -15,7 +15,7 @@ public class OperationsFactory {
     static {
         operations.put("+", new Addition());
         operations.put("-", new Subtraction());
-        operations.put("X", new Multiplication());
+        operations.put("*", new Multiplication());
         operations.put("/", new Division());
     }
 
@@ -27,6 +27,10 @@ public class OperationsFactory {
      * @return the operation represented by the operation symbol
      */
     public static Operation getOperation(String operation) {
-        return operations.get(operation);
+        Operation operationMapped = operations.get(operation);
+        if (operationMapped == null) {
+            throw new IllegalArgumentException("Unsupported operation: " + operation);
+        }
+        return operationMapped;
     }
 }

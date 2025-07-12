@@ -101,7 +101,7 @@ public class CalculatorManager {
      * @see #performCalculation(double, double, String)
      */
     private void processOperator (String operator, Label calculatorDisplay) {
-        double number = Double.parseDouble(calculatorDisplay.getText());
+        double number = parseDisplayValue(calculatorDisplay);
 
         if (!currentOperator.isEmpty() && !waitingForOperand) {
             try {
@@ -146,7 +146,7 @@ public class CalculatorManager {
     public void handleEqualsClick (Label calculatorDisplay) {
         if (!currentOperator.isEmpty() && !waitingForOperand) {
             try {
-                double secondNumber = Double.parseDouble(calculatorDisplay.getText());
+                double secondNumber = parseDisplayValue(calculatorDisplay);
                 double result = performCalculation(currentNumber, secondNumber, currentOperator);
                 calculatorDisplay.setText(Double.toString(result));
                 currentOperator = "";
@@ -224,6 +224,15 @@ public class CalculatorManager {
 
         if (Objects.requireNonNull(code) == KeyCode.DELETE) {
             handleClearClick(calculatorDisplay);
+        }
+    }
+
+    private double parseDisplayValue (Label calculatorDisplay) {
+        try {
+            return Double.parseDouble(calculatorDisplay.getText());
+        } catch (NumberFormatException e) {
+            calculatorDisplay.setText("Error");
+            throw new IllegalArgumentException("Invalid number format");
         }
     }
 }
