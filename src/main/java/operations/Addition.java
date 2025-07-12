@@ -8,7 +8,7 @@ package operations;
  */
 public class Addition implements Operation {
     /**
-     * Performs addition of two numbers
+     * Performs addition of two numbers.
      *
      * @param firstNumber the first operand in the addition operation
      * @param secondNumber the second operand in the addition operation

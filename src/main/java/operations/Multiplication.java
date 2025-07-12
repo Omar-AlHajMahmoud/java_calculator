@@ -8,6 +8,7 @@ package operations;
  */
 public class Multiplication implements Operation {
     /**
+     * Performs multiplication of two numbers.
      *
      * @param firstNumber the first operand in the multiplication operation
      * @param secondNumber the second operand in the multiplication operation

@@ -104,9 +104,14 @@ public class CalculatorManager {
         double number = Double.parseDouble(calculatorDisplay.getText());
 
         if (!currentOperator.isEmpty() && !waitingForOperand) {
-            double result = performCalculation(currentNumber, number, operator);
-            calculatorDisplay.setText(Double.toString(result));
-            currentNumber = result;
+            try {
+                double result = performCalculation(currentNumber, number, operator);
+                calculatorDisplay.setText(Double.toString(result));
+                currentNumber = result;
+            } catch (RuntimeException e) {
+                calculatorDisplay.setText("Error");
+                currentNumber = 0;
+            }
         } else {
             currentNumber = number;
         }
@@ -124,7 +129,11 @@ public class CalculatorManager {
      * @return the result of the mathematical operator
      */
     private double performCalculation (double currentNumber, double number, String operator) {
-        return calculatorEngine.calculate(operator, currentNumber, number);
+        try {
+            return calculatorEngine.calculate(operator, currentNumber, number);
+        } catch (ArithmeticException e) {
+            throw new RuntimeException("Error: " + e.getMessage(), e);
+        }
     }
 
     /**
@@ -136,11 +145,18 @@ public class CalculatorManager {
      */
     public void handleEqualsClick (Label calculatorDisplay) {
         if (!currentOperator.isEmpty() && !waitingForOperand) {
-            double secondNumber = Double.parseDouble(calculatorDisplay.getText());
-            double result = performCalculation(currentNumber, secondNumber, currentOperator);
-            calculatorDisplay.setText(Double.toString(result));
-            currentOperator = "";
-            waitingForOperand = true;
+            try {
+                double secondNumber = Double.parseDouble(calculatorDisplay.getText());
+                double result = performCalculation(currentNumber, secondNumber, currentOperator);
+                calculatorDisplay.setText(Double.toString(result));
+                currentOperator = "";
+                waitingForOperand = true;
+            } catch (RuntimeException e) {
+                calculatorDisplay.setText("Error");
+                currentNumber = 0;
+                currentOperator = "";
+                waitingForOperand = true;
+            }
         }
     }
 

@@ -8,6 +8,7 @@ package operations;
  */
 public class Subtraction implements Operation {
     /**
+     * Performs subtraction of two numbers.
      *
      * @param firstNumber the first operand in the subtraction operation
      * @param secondNumber the second operand in the subtraction operation
